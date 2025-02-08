@@ -3,20 +3,33 @@ import { Globe, Menu } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 
+const navigationItems = [
+  {
+    label: "Facilities",
+    href: "/tasks",
+  },
+  {
+    label: "Events",
+    href: "/tasks/events",
+  },
+  {
+    label: "Enquiries",
+    href: "/tasks/enquiries",
+  },
+]
+
 export function TopBar() {
   return (
     <header className="flex items-center justify-between py-4 border-b">
       <div className="flex items-center gap-6">
         <nav className="hidden md:flex items-center gap-6">
-          <Button variant="ghost" className="text-sm font-medium">
-            Facilities
-          </Button>
-          <Button variant="ghost" className="text-sm font-medium">
-            Events
-          </Button>
-          <Button variant="ghost" className="text-sm font-medium">
-            Enquiries
-          </Button>
+          {navigationItems.map((item) => (
+            <Link key={item.href} href={item.href}>
+              <Button variant="ghost" className="text-sm font-medium">
+                {item.label}
+              </Button>
+            </Link>
+          ))}
         </nav>
         <div className="flex items-center gap-2">
           <Button variant="ghost" size="icon">

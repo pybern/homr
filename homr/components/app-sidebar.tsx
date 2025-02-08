@@ -67,25 +67,6 @@ const data = {
       ],
     },
     {
-      title: "Models",
-      url: "#",
-      icon: Bot,
-      items: [
-        {
-          title: "Genesis",
-          url: "#",
-        },
-        {
-          title: "Explorer",
-          url: "#",
-        },
-        {
-          title: "Quantum",
-          url: "#",
-        },
-      ],
-    },
-    {
       title: "Documentation",
       url: "#",
       icon: BookOpen,
@@ -134,17 +115,18 @@ const data = {
   ],
   projects: [
     {
-      name: "Design Engineering",
+      name: "Maintenance",
       url: "#",
       icon: Frame,
     },
+
     {
-      name: "Sales & Marketing",
+      name: "Security",
       url: "#",
       icon: PieChart,
     },
     {
-      name: "Travel",
+      name: "Reports",
       url: "#",
       icon: Map,
     },
