@@ -2,19 +2,13 @@ import Link from "next/link"
 import { Globe, Menu } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
+import { EnquiryForm } from "./enquiry-form"
 
 const navigationItems = [
   {
     label: "Facilities",
-    href: "/tasks",
-  },
-  {
-    label: "Events",
-    href: "/tasks/events",
-  },
-  {
-    label: "Enquiries",
-    href: "/tasks/enquiries",
+    href: "/client",
   },
 ]
 
@@ -30,6 +24,16 @@ export function TopBar() {
               </Button>
             </Link>
           ))}
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button variant="ghost" className="text-sm font-medium">
+                Enquiries
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[425px]">
+              <EnquiryForm />
+            </DialogContent>
+          </Dialog>
         </nav>
         <div className="flex items-center gap-2">
           <Button variant="ghost" size="icon">

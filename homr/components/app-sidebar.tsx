@@ -56,8 +56,8 @@ const data = {
           url: "/dashboard",
         },
         {
-          title: "Tasks",
-          url: "/tasks",
+          title: "Client",
+          url: "/client",
         },
 
         {
@@ -93,6 +93,29 @@ const data = {
       title: "Settings",
       url: "#",
       icon: Settings2,
+      items: [
+        {
+          title: "General",
+          url: "#",
+        },
+        {
+          title: "Team",
+          url: "#",
+        },
+        {
+          title: "Billing",
+          url: "#",
+        },
+        {
+          title: "Limits",
+          url: "#",
+        },
+      ],
+    },
+    {
+      title: "AI",
+      url: "#",
+      icon: Bot,
       items: [
         {
           title: "General",

@@ -7,8 +7,7 @@ interface TasksLayoutProps {
 
 export default function TasksLayout({ children }: TasksLayoutProps) {
   const breadcrumbItems = [
-    { title: "Tasks", href: "/tasks" },
-    { title: "All Tasks" }
+    { title: "Client", href: "/tasks" }
   ]
 
   return (
