@@ -10,7 +10,9 @@ import { Dialog, DialogContent } from "@/components/ui/dialog"
 
 const Command = React.forwardRef<
   React.ElementRef<typeof CommandPrimitive>,
-  React.ComponentPropsWithoutRef<typeof CommandPrimitive>
+  React.ComponentPropsWithoutRef<typeof CommandPrimitive> & {
+    children: React.ReactNode
+  }
 >(({ className, ...props }, ref) => (
   <CommandPrimitive
     ref={ref}
