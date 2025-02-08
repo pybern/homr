@@ -6,9 +6,13 @@ import TaskPage from '@/components/task-page'
 import { chartData, chartConfig, criticalDates } from "@/lib/data"
 
 export default function Page() {
+  const breadcrumbItems = [
+    { title: "Home", href: "/" },
+  ]
+
   return (
     <>
-      <Header />
+      <Header items={breadcrumbItems} />
       <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
         <StatsCards />
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3">

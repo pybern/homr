@@ -52,15 +52,16 @@ const data = {
       isActive: true,
       items: [
         {
-          title: "History",
-          url: "#",
+          title: "Dashboard",
+          url: "/dashboard",
         },
         {
-          title: "Starred",
-          url: "#",
+          title: "Tasks",
+          url: "/tasks",
         },
+
         {
-          title: "Settings",
+          title: "IoT",
           url: "#",
         },
       ],
