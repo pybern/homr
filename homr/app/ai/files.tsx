@@ -96,7 +96,12 @@ export const Files = ({
                 setUploadQueue((currentQueue) => [...currentQueue, file.name]);
 
 
-                await fetch(`/ai/api/files/upload?filename=${file.name}`, {
+                // await fetch(`/ai/api/files/upload?filename=${file.name}`, {
+                //   method: "POST",
+                //   body: file,
+                // });
+
+                await fetch(`/ai/api/files/test?filename=${file.name}`, {
                   method: "POST",
                   body: file,
                 });
