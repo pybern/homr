@@ -61,8 +61,8 @@ const data = {
         },
 
         {
-          title: "IoT",
-          url: "#",
+          title: "AI",
+          url: "/ai",
         },
       ],
     },
