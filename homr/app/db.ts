@@ -71,7 +71,7 @@ export async function getChunksByFilePaths({
 }: {
   filePaths: Array<string>
 }) {
-  const { data, error } = await supabase.from("chunk").select().in("file_path", filePaths)
+  const { data, error } = await supabase.from("chunk").select().in("filePath", filePaths)
 
   if (error) throw error
   return data
@@ -82,7 +82,7 @@ export async function deleteChunksByFilePath({
 }: {
   filePath: string
 }) {
-  const { data, error } = await supabase.from("chunk").delete().eq("file_path", filePath)
+  const { data, error } = await supabase.from("chunk").delete().eq("th", filePath)
 
   if (error) throw error
   return data
