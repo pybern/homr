@@ -63,7 +63,16 @@ export function Chat({
     }
   }, [session]);
 
-  const { messages, handleSubmit, input, setInput, append } = useChat({
+  // const { messages, handleSubmit, input, setInput, append } = useChat({
+  //   api: "/ai/api/chat",
+  //   body: { id, selectedFilePathnames },
+  //   initialMessages,
+  //   onFinish: () => {
+  //     window.history.replaceState({}, "", `/ai/${id}`);
+  //   },
+  // });
+
+  const chatSession = useChat({
     api: "/ai/api/chat",
     body: { id, selectedFilePathnames },
     initialMessages,
@@ -72,7 +81,11 @@ export function Chat({
     },
   });
 
-  console.log(messages);
+  const messages = chatSession.messages;
+  const handleSubmit = chatSession.handleSubmit;
+  const input = chatSession.input;
+  const setInput = chatSession.setInput;
+  const append = chatSession.append;
 
   const [messagesContainerRef, messagesEndRef] =
     useScrollToBottom<HTMLDivElement>();

@@ -1,15 +1,6 @@
 // @ts-ignore
 import pdf from "pdf-parse/lib/pdf-parse";
 
-// export async function getPdfContentFromUrl(url: string): Promise<string> {
-//   const response = await fetch(url);
-//   console.log(response)
-//   const arrayBuffer = await response.arrayBuffer();
-//   const buffer = Buffer.from(arrayBuffer);
-//   const data = await pdf(buffer);
-//   return data.text;
-// }
-
 export async function getPdfContentFromUrl(url : string) : Promise<string> {
 
   try {
@@ -28,7 +19,6 @@ export async function getPdfContentFromUrl(url : string) : Promise<string> {
   console.log('Buffer', buffer)
   console.log('PDF fetched successfully. Parsing...');
 
-
     // Parse the PDF file
     const data = await pdf(buffer);
     console.log(data.text.length)
@@ -40,10 +30,3 @@ export async function getPdfContentFromUrl(url : string) : Promise<string> {
     return ''
   }
 }
-
-// export async function getPdfContentFromUrl(url: string) {
-//   console.log('url', url)
-//   const response = await fetch(url);
-//   console.log('response', response)
- 
-// }

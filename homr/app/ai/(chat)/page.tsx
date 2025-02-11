@@ -4,7 +4,11 @@ import { auth } from "@/app/ai/(auth)/auth";
 
 export default async function Page() {
   const session = await auth();
-  const id = await generateId();
+  const id = generateId();
 
-  return <Chat id={id} initialMessages={[]} session={session} />;
+  return (
+    <>
+      <Chat id={id} initialMessages={[]} session={session} />
+    </>
+  )
 }

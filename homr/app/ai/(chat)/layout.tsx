@@ -1,7 +1,9 @@
-import { Navbar } from "./navbar";
+import { Header } from "@/components/header"
+import { Card } from "@/components/ui/card"
+import { Navbar } from "../navbar";
 import { Metadata } from "next";
 import { Toaster } from "sonner";
-import "./globals.css";
+
 
 export const metadata: Metadata = {
   metadataBase: new URL(
@@ -17,13 +19,21 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+  const breadcrumbItems = [
+    { title: "AI", href: "/ai" }
+  ]
+
   return (
-    <html lang="en">
-      <body>
-        <Toaster position="top-center" />
-        <Navbar />
-        {children}
-      </body>
-    </html>
+    <>
+      <Header items={breadcrumbItems} />
+      <div className="container mx-auto m-4">
+        <Card className="p-4">
+          <Toaster position="top-center" />
+          <Navbar />
+          {children}
+        </Card>
+      </div>
+    </>
   );
 }

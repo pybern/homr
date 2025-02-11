@@ -38,7 +38,5 @@ export async function POST(request: Request) {
     },
   });
 
-  console.log("streaming")
-
   return result.toDataStreamResponse({});
 }

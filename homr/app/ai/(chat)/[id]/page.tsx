@@ -6,8 +6,11 @@ import { Chat as PreviewChat } from "@/app/ai/chat";
 import { auth } from "@/app/ai/(auth)/auth";
 
 export default async function Page({ params }: { params: any }) {
-  const { id } = params;
+  const { id } = await params;
   const chatFromDb = await getChatById({ id });
+
+  const messages = JSON.parse(chatFromDb.messages)
+  console.log(messages)
 
   if (!chatFromDb) {
     notFound();
@@ -16,7 +19,7 @@ export default async function Page({ params }: { params: any }) {
   // type casting
   const chat = {
     ...chatFromDb,
-    messages: chatFromDb.messages as Message[],
+    messages: messages as Message[],
   };
 
   const session = await auth();

@@ -28,6 +28,7 @@ export const History = () => {
     mutate();
   }, [pathname, mutate]);
 
+
   return (
     <>
       <div
@@ -120,7 +121,7 @@ export const History = () => {
                         },
                       )}
                     >
-                      {chat.messages[0].content as string}
+                      {chat.id as string}
                     </Link>
                   ))}
               </div>

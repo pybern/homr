@@ -2,9 +2,8 @@ import { supabase } from "@/lib/supabase"
 import { genSaltSync, hashSync } from "bcrypt-ts";
 
 export async function getUser(email: string) {
-  console.log("getUser", email)
+
   const { data, error } = await supabase.from("user").select().eq("email", email)
-  console.log("getUser", data, error)
   if (error) throw error
   return data
 }
@@ -82,7 +81,7 @@ export async function deleteChunksByFilePath({
 }: {
   filePath: string
 }) {
-  const { data, error } = await supabase.from("chunk").delete().eq("th", filePath)
+  const { data, error } = await supabase.from("chunk").delete().eq("filePath", filePath)
 
   if (error) throw error
   return data

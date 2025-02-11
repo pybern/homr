@@ -15,9 +15,6 @@ export async function POST(request: Request) {
   const { searchParams } = new URL(request.url);
   const filename = searchParams.get("filename");
 
-  console.log(filename)
-  
-
   let session = await auth();
 
   if (!session) {
@@ -39,7 +36,6 @@ export async function POST(request: Request) {
   });
 
   const url = blob.url;
-  console.log(url)
 
   const content = await getPdfContentFromUrl(url);
 
