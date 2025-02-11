@@ -16,24 +16,23 @@ export const authConfig = {
       let isOnRegister = nextUrl.pathname.startsWith("/ai/register");
       let isOnLogin = nextUrl.pathname.startsWith("/ai/login");
 
-      if (isLoggedIn && (isOnLogin || isOnRegister)) {
-        return Response.redirect(new URL("/", nextUrl));
+      // If on login/register pages
+      if (isOnLogin || isOnRegister) {
+        // Redirect logged in users away from auth pages
+        if (isLoggedIn) {
+          return Response.redirect(new URL("/ai", nextUrl));
+        }
+        return true; // Allow access to auth pages for non-logged in users
       }
 
-      if (isOnRegister || isOnLogin) {
-        return true; // Always allow access to register and login pages
-      }
-
+      // For chat pages, require authentication
       if (isOnChat) {
         if (isLoggedIn) return true;
-        return false; // Redirect unauthenticated users to login page
+        return Response.redirect(new URL("/ai/login", nextUrl));
       }
 
-      if (isLoggedIn) {
-        return Response.redirect(new URL("/", nextUrl));
-      }
-
-      return true;
+      // For all other pages
+      return true; // Allow access by default
     },
   },
 } satisfies NextAuthConfig;
