@@ -4,16 +4,24 @@ import { useState } from "react"
 import { Search } from "./search"
 import { Categories } from "./categories"
 import { Listings } from "./listings"
+import { Card } from "@/components/ui/card"
+import { TopBar } from "./top-bar"
+
+import TaskPage from '@/components/task-page'
 
 export default function TasksPage() {
     const [searchQuery, setSearchQuery] = useState("")
 
     return (
-        <>
-            <Search onSearch={setSearchQuery} />
-            <Categories />
-            <Listings searchQuery={searchQuery} />
-        </>
+        <div>
+            <Card className="p-4">
+                <TopBar />
+                <Search onSearch={setSearchQuery} />
+                <Categories />
+                <Listings searchQuery={searchQuery} />
+            </Card>
+            <TaskPage />
+        </div>
     )
 }
 

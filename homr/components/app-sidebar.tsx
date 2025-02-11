@@ -64,10 +64,6 @@ const data = {
           title: "AI",
           url: "/ai",
         },
-        {
-          title: "Enq.",
-          url: "/enquiry",
-        },
       ],
     },
     {
