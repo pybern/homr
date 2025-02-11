@@ -41,27 +41,26 @@ export async function POST(request: Request) {
   const url = blob.url;
   console.log(url)
 
-  // const content = await getPdfContentFromUrl(url);
-  // console.log(content)
-  
-  // const textSplitter = new RecursiveCharacterTextSplitter({
-  //   chunkSize: 1000,
-  // });
-  // const chunkedContent = await textSplitter.createDocuments([content]);
+  const content = await getPdfContentFromUrl(url);
 
-  // const { embeddings } = await embedMany({
-  //   model: azure.textEmbeddingModel("text-embedding-3-small"),
-  //   values: chunkedContent.map((chunk) => chunk.pageContent),
-  // });
+  const textSplitter = new RecursiveCharacterTextSplitter({
+    chunkSize: 1000,
+  });
+  const chunkedContent = await textSplitter.createDocuments([content]);
 
-  // await insertChunks({
-  //   chunks: chunkedContent.map((chunk, i) => ({
-  //     id: `${user.email}/${filename}/${i}`,
-  //     filePath: `${user.email}/${filename}`,
-  //     content: chunk.pageContent,
-  //     embedding: embeddings[i],
-  //   })),
-  // });
+  const { embeddings } = await embedMany({
+    model: azure.textEmbeddingModel("text-embedding-3-small"),
+    values: chunkedContent.map((chunk) => chunk.pageContent),
+  });
+
+  await insertChunks({
+    chunks: chunkedContent.map((chunk, i) => ({
+      id: `${user.email}/${filename}/${i}`,
+      filePath: `${user.email}/${filename}`,
+      content: chunk.pageContent,
+      embedding: embeddings[i],
+    })),
+  });
 
   return Response.json({});
 }
