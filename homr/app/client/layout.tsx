@@ -12,6 +12,7 @@ export default function TasksLayout({ children }: TasksLayoutProps) {
 
   return (
     <>
+    <Header items={breadcrumbItems} />
       <div className="container mx-auto w-full m-4">
         <Card className="p-4">
           <TopBar />
