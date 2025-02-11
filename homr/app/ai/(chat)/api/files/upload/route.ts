@@ -7,15 +7,16 @@ import { put } from "@vercel/blob";
 import { embedMany } from "ai";
 
 const azure = createAzure({
-    resourceName: process.env.AZURE_RESOURCE_NAME, // Azure resource name
-    apiKey: process.env.AZURE_API_KEY,
-  });
+  resourceName: process.env.AZURE_RESOURCE_NAME, // Azure resource name
+  apiKey: process.env.AZURE_API_KEY,
+});
 
 export async function POST(request: Request) {
   const { searchParams } = new URL(request.url);
   const filename = searchParams.get("filename");
 
   console.log(filename)
+  
 
   let session = await auth();
 
@@ -37,27 +38,30 @@ export async function POST(request: Request) {
     access: "public",
   });
 
-  const downloadUrl = blob.downloadUrl;
+  const url = blob.url;
+  console.log(url)
 
-  const content = await getPdfContentFromUrl(downloadUrl);
-  const textSplitter = new RecursiveCharacterTextSplitter({
-    chunkSize: 1000,
-  });
-  const chunkedContent = await textSplitter.createDocuments([content]);
+  // const content = await getPdfContentFromUrl(url);
+  // console.log(content)
+  
+  // const textSplitter = new RecursiveCharacterTextSplitter({
+  //   chunkSize: 1000,
+  // });
+  // const chunkedContent = await textSplitter.createDocuments([content]);
 
-  const { embeddings } = await embedMany({
-    model: azure.textEmbeddingModel("text-embedding-3-small"),
-    values: chunkedContent.map((chunk) => chunk.pageContent),
-  });
+  // const { embeddings } = await embedMany({
+  //   model: azure.textEmbeddingModel("text-embedding-3-small"),
+  //   values: chunkedContent.map((chunk) => chunk.pageContent),
+  // });
 
-  await insertChunks({
-    chunks: chunkedContent.map((chunk, i) => ({
-      id: `${user.email}/${filename}/${i}`,
-      filePath: `${user.email}/${filename}`,
-      content: chunk.pageContent,
-      embedding: embeddings[i],
-    })),
-  });
+  // await insertChunks({
+  //   chunks: chunkedContent.map((chunk, i) => ({
+  //     id: `${user.email}/${filename}/${i}`,
+  //     filePath: `${user.email}/${filename}`,
+  //     content: chunk.pageContent,
+  //     embedding: embeddings[i],
+  //   })),
+  // });
 
   return Response.json({});
 }
