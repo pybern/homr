@@ -7,7 +7,7 @@ import { Listings } from "./listings"
 import { Card } from "@/components/ui/card"
 import { TopBar } from "./top-bar"
 
-import TaskPage from '@/components/task-page'
+import TaskPage from '@/components/db-task-page'
 
 export default function TasksPage() {
     const [searchQuery, setSearchQuery] = useState("")

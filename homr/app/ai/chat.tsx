@@ -9,6 +9,7 @@ import { FileIcon } from "@/app/ai/icons";
 import { Message as PreviewMessage } from "@/app/ai/message";
 import { useScrollToBottom } from "@/app/ai/use-scroll-to-bottom";
 import { Session } from "next-auth";
+import { LoaderIcon } from "@/app/ai/icons";
 
 const suggestedActions = [
   {
@@ -86,6 +87,7 @@ export function Chat({
   const input = chatSession.input;
   const setInput = chatSession.setInput;
   const append = chatSession.append;
+  const isLoading = chatSession.isLoading;
 
   const [messagesContainerRef, messagesEndRef] =
     useScrollToBottom<HTMLDivElement>();
@@ -104,6 +106,18 @@ export function Chat({
               content={message.content}
             />
           ))}
+          {isLoading && messages[messages.length - 1]?.role !== "assistant" && (
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="flex items-center gap-2 text-zinc-500 dark:text-zinc-400 text-sm p-4"
+            >
+              <span className="animate-spin">
+                <LoaderIcon size={16} />
+              </span>
+              <span>Thinking...</span>
+            </motion.div>
+          )}
           <div
             ref={messagesEndRef}
             className="flex-shrink-0 min-w-[24px] min-h-[24px]"

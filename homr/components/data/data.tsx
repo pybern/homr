@@ -8,21 +8,34 @@ import {
     HelpCircle,
     Timer,
   } from "lucide-react"
+
+  // export const labels = [
+  //   {
+  //     value: "bug",
+  //     label: "Bug",
+  //   },
+  //   {
+  //     value: "maintenance",
+  //     label: "Maintenance",
+  //   },
+  //   {
+  //     value: "feature",
+  //     label: "Feature",
+  //   },
+  //   {
+  //     value: "documentation",
+  //     label: "Documentation",
+  //   },
+  // ]
   
-  export const labels = [
-    {
-      value: "bug",
-      label: "Bug",
-    },
-    {
-      value: "feature",
-      label: "Feature",
-    },
-    {
-      value: "documentation",
-      label: "Documentation",
-    },
-  ]
+  export const labels = [  
+    { value: "maintenance", label: "Maintenance" },  
+    { value: "administration", label: "Administration" },  
+    { value: "finance", label: "Finance" },  
+    { value: "community", label: "Community" },  
+    { value: "compliance", label: "Compliance" },
+    { value: "enquiry", label: "Enquiry" },
+]  
   
   export const statuses = [
     {

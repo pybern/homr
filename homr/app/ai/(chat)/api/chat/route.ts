@@ -1,7 +1,7 @@
 import { customModel } from "@/ai";
 import { auth } from "@/app/ai/(auth)/auth";
 import { createMessage } from "@/app/db";
-import { streamText } from "ai";
+import { smoothStream, streamText } from "ai";
 
 export async function POST(request: Request) {
   const { id, messages, selectedFilePathnames } = await request.json();
@@ -17,6 +17,7 @@ export async function POST(request: Request) {
     system:
       "you are a friendly assistant! keep your responses concise and helpful.",
     messages,
+    experimental_transform: smoothStream(),
     onError({ error }) {
       console.error(error); // your error logging logic here
     },
