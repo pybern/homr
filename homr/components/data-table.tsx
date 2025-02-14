@@ -28,6 +28,9 @@ import {
 import { DataTablePagination } from "./data-table-pagination"
 import { DataTableToolbar } from "./data-table-toolbar"
 
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
@@ -44,6 +47,7 @@ export function DataTable<TData, TValue>({
     []
   )
   const [sorting, setSorting] = React.useState<SortingState>([])
+  const [selectedRow, setSelectedRow] = React.useState<TData | null>(null)
 
   const table = useReactTable({
     data,
@@ -81,9 +85,9 @@ export function DataTable<TData, TValue>({
                       {header.isPlaceholder
                         ? null
                         : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext()
-                          )}
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
                     </TableHead>
                   )
                 })}
@@ -94,6 +98,8 @@ export function DataTable<TData, TValue>({
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow
+                  className="cursor-pointer"
+                  onClick={() => setSelectedRow(row.original)}
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
                 >
@@ -121,6 +127,26 @@ export function DataTable<TData, TValue>({
         </Table>
       </div>
       <DataTablePagination table={table} />
+      <Dialog open={!!selectedRow} onOpenChange={() => setSelectedRow(null)}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle className="text-sm">Details</DialogTitle>
+          </DialogHeader>
+
+          {selectedRow && (
+            <Card className="text-sm">
+              <CardHeader>
+                <CardTitle>{(selectedRow as any).id}</CardTitle>
+                <CardDescription>{(selectedRow as any).title}</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p>{(selectedRow as any).action}</p>
+              </CardContent>
+            </Card>
+          )}
+
+        </DialogContent>
+      </Dialog>
     </div>
   )
 }

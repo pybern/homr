@@ -26,11 +26,13 @@ async function generateEnquiry(subject: string, message: string) {
             title: z.string(),
             priority: z.enum(['low', 'medium', 'high']),
             category: z.enum(['complaint', 'feedback', 'support']),
+            action: z.string(),
         }),
         prompt: `Summarize this enquiry for:
     1. Concise high level description
     2. Priority or urgency (low, medium, high)
     3. Category or type of enquiry (complaint, feedback, support)
+    4. Action or recommended next steps to take
 
     Copy to evaluate: ${subject} ${message}`,
     });
@@ -55,7 +57,7 @@ export async function submitEnquiry(formData: FormData) {
         // Insert into Supabase with the AI-generated category
         const { data, error } = await supabase
             .from('tasks')
-            .upsert({ id: 'TASK-DEMO', 'title': `[${summary.category.toUpperCase()}] ${summary.title}`, 'status': 'backlog', 'label': 'enquiry', 'priority': summary.priority })
+            .upsert({ id: 'TASK-DEMO', 'title': `[${summary.category.toUpperCase()}] ${summary.title}`, 'status': 'backlog', 'label': 'enquiry', 'priority': summary.priority, 'action': summary.action })
             .select()
 
         if (error) throw error
