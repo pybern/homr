@@ -18,6 +18,7 @@ async function getTasks() {
   const { data, error } = await supabase
     .from('tasks')
     .select('*')
+    .order('id', { ascending: false })
   
   if (error) {
     console.error('Error fetching tasks:', error)

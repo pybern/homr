@@ -1,6 +1,6 @@
 'use server'
 
-import { listings } from './data'
+import { listings } from '../data'
 
 export async function searchListings(query: string) {
   const search = query.toLowerCase()

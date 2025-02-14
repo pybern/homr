@@ -8,6 +8,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
+  DialogClose,
   DialogTrigger,
 } from "@/components/ui/dialog"
 import {
@@ -23,6 +24,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
+import { submitEnquiry } from "./actions/enquiry-ai"
 
 const formSchema = z.object({
   subject: z.string().min(2, "Subject must be at least 2 characters"),
@@ -40,9 +42,10 @@ export function EnquiryForm() {
     },
   })
 
-  function onSubmit(values: FormValues) {
+  async function handleSubmit(formData: FormData) {
     // Handle form submission here
-    console.log(values)
+    console.log(formData)
+    await submitEnquiry(formData)
   }
 
   return (
@@ -51,7 +54,7 @@ export function EnquiryForm() {
         <DialogTitle>New Enquiry</DialogTitle>
       </DialogHeader>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+        <form action={handleSubmit} className="space-y-4">
           <FormField
             control={form.control}
             name="subject"
@@ -82,9 +85,9 @@ export function EnquiryForm() {
               </FormItem>
             )}
           />
-          <DialogFooter>
+          <DialogClose asChild>
             <Button type="submit">Submit Enquiry</Button>
-          </DialogFooter>
+          </DialogClose>
         </form>
       </Form>
     </>

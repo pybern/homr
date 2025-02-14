@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { Input } from "@/components/ui/input"
 import { Calendar } from "@/components/ui/calendar"
-import { searchListings } from "./actions"
+import { searchListings } from "./actions/search-listings"
 
 interface SearchProps {
   onSearch: (value: string) => void
