@@ -64,6 +64,14 @@ const data = {
           title: "AI",
           url: "/ai",
         },
+        {
+          title: "Book",
+          url: "/forms",
+        },
+        {
+          title: "Client Home",
+          url: "/client-home",
+        }
       ],
     },
     {
