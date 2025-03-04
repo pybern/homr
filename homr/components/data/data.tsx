@@ -29,39 +29,27 @@ import {
   // ]
   
   export const labels = [  
-    { value: "maintenance", label: "Maintenance" },  
-    { value: "administration", label: "Administration" },  
-    { value: "finance", label: "Finance" },  
-    { value: "community", label: "Community" },  
-    { value: "compliance", label: "Compliance" },
-    { value: "enquiry", label: "Enquiry" },
+    { value: "open", label: "Open" },  
+    { value: "in progress", label: "In Progress" },  
+    { value: "done", label: "Done" },  
+    { value: "cancelled", label: "Cancelled" }
 ]  
   
   export const statuses = [
     {
-      value: "backlog",
-      label: "Backlog",
-      icon: HelpCircle,
-    },
-    {
-      value: "todo",
-      label: "Todo",
-      icon: Circle,
-    },
-    {
-      value: "in progress",
-      label: "In Progress",
+      value: "pending",
+      label: "Pending",
       icon: Timer,
     },
     {
-      value: "done",
-      label: "Done",
+      value: "booking",
+      label: "Booked",
       icon: CheckCircle,
     },
     {
-      value: "canceled",
-      label: "Canceled",
-      icon: CircleOff,
+      value: "quote",
+      label: "Quote",
+      icon: Circle,
     },
   ]
   
