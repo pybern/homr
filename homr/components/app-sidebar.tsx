@@ -53,25 +53,17 @@ const data = {
       items: [
         {
           title: "Dashboard",
-          url: "/dashboard",
+          url: "/",
         },
-        {
-          title: "Client",
-          url: "/client",
-        },
+        // {
+        //   title: "Client",
+        //   url: "/client",
+        // },
 
-        {
-          title: "AI",
-          url: "/ai",
-        },
-        {
-          title: "Book",
-          url: "/forms",
-        },
-        {
-          title: "Client Home",
-          url: "/client-home",
-        }
+        // {
+        //   title: "AI",
+        //   url: "/ai",
+        // },
       ],
     },
     {
